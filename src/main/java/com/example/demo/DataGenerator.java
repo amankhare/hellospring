@@ -86,7 +86,7 @@ public class DataGenerator {
 		for(DataSet aa:ndata.values())
 			finaldata.add(aa);
 		
-		return convertToHashMap(finaldata,3);
+		return convertToHashMap(finaldata,2);
 	}
 	
 	public ArrayList<HashMap<String,String>> convertToHashMap(ArrayList<DataSet> list,int count)
@@ -191,23 +191,23 @@ public class DataGenerator {
 		ArrayList<DataSet> data=new ArrayList<>();
 		DataSet data0=new DataSet("Name",false,"!false  name^&*(");
 		DataSet data1=new DataSet("Name",true,"Aman");
-		DataSet data2=new DataSet("Name",false,"*(&^%$#@");
-		/*DataSet data3=new DataSet("Pass",true,"Aman");
+		//DataSet data2=new DataSet("Name",false,"*(&^%$#@");
+		DataSet data3=new DataSet("Pass",true,"Aman");
 		DataSet data4=new DataSet("Pass",false,"(*&^%$#");
-		DataSet data5=new DataSet("Pass",true,"naukri");
+		/*DataSet data5=new DataSet("Pass",true,"naukri");
 		DataSet data6=new DataSet("Email",true,"shaz@yopmail.com");
 		DataSet data7=new DataSet("Email",false,"shaz@@yopmail.com");
 		DataSet data8=new DataSet("Email",false,"!@#@@yopmail.com");*/
 		data.add(data0);
 		data.add(data1);
-		data.add(data2);
-		/*data.add(data3);
+		//data.add(data2);
+		data.add(data3);
 		data.add(data4);
-		data.add(data5);
+		/*data.add(data5);
 		data.add(data6);
 		data.add(data7);
-		data.add(data8);*/
-		new DataGenerator().getValidationData(data);
+		data.add(data8);
+		*/new DataGenerator().getValidationData(data);
 	}
  
 }
