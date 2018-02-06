@@ -19,7 +19,7 @@ import apiTestingLibrary.APIFunctions;
 import apiTestingLibrary.APIHeaders;
 import apiTestingLibrary.Domain;
 import apiTestingLibrary.Response;
-import pojo.DataSet;
+import pojo.DataSet2;
 import pojo.MainResponse;
 
 public class DataGenerator {
@@ -42,16 +42,16 @@ public class DataGenerator {
 	
 	public ArrayList<HashMap<String,String>> getValidationData(String Domain,String... str)
 	{
-		ArrayList<DataSetModel> data=returnData(Domain,str);//has data in row format
-		ArrayList<DataSetModel> finaldata=new ArrayList<>();//has data in row format
-		ArrayList<DataSetModel> positivedata=new ArrayList<>();
-		ArrayList<DataSetModel> positivedatafromHash=new ArrayList<>();
-		ArrayList<DataSetModel> negativedata=new ArrayList<>();
-		HashMap<String,DataSetModel> pdata=new HashMap<>();
-		HashMap<String,DataSetModel> ndata=new HashMap<>();
+		ArrayList<DataSet> data=returnData(Domain,str);//has data in row format
+		ArrayList<DataSet> finaldata=new ArrayList<>();//has data in row format
+		ArrayList<DataSet> positivedata=new ArrayList<>();
+		ArrayList<DataSet> positivedatafromHash=new ArrayList<>();
+		ArrayList<DataSet> negativedata=new ArrayList<>();
+		HashMap<String,DataSet> pdata=new HashMap<>();
+		HashMap<String,DataSet> ndata=new HashMap<>();
 		//somehow here we know which fields are required and we also know that we require validation cases
 	
-		for(DataSetModel row:data)
+		for(DataSet row:data)
 		{
 			if(row.Valid)
 			{
@@ -64,38 +64,38 @@ public class DataGenerator {
 				ndata.put(row.Type, row);
 			}
 		}
-		Collections.sort(negativedata,new Comparator<DataSetModel>(){
+		Collections.sort(negativedata,new Comparator<DataSet>(){
 	        @Override
-	        public int compare(DataSetModel p1, DataSetModel p2) {
+	        public int compare(DataSet p1, DataSet p2) {
 	            return p1.Type.compareTo(p2.Type); // if you want to short by name
 	        }
 	    });
 		positivedatafromHash.addAll(pdata.values());
-		for(DataSetModel aa:negativedata)
+		for(DataSet aa:negativedata)
 		{
 			finaldata.add(aa);
-			for(DataSetModel temp:positivedatafromHash)
+			for(DataSet temp:positivedatafromHash)
 			{
 				if(!temp.Type.equals(aa.Type))
 				finaldata.add(temp);
 			}
 		}
-		for(DataSetModel aa:positivedatafromHash)
+		for(DataSet aa:positivedatafromHash)
 			finaldata.add(aa);
 		
-		for(DataSetModel aa:ndata.values())
+		for(DataSet aa:ndata.values())
 			finaldata.add(aa);
 		
 		return convertToHashMap(finaldata,3);
 	}
 	
-	public ArrayList<HashMap<String,String>> convertToHashMap(ArrayList<DataSetModel> list,int count)
+	public ArrayList<HashMap<String,String>> convertToHashMap(ArrayList<DataSet> list,int count)
 	{
 		ArrayList<HashMap<String,String>> output=new ArrayList<>();
 		int i=0;
 		int countforvaldation=0;
 		HashMap<String,String> abc=new HashMap<>();
-		for(DataSetModel data:list)
+		for(DataSet data:list)
 		{
 			i++;
 			abc.put(data.Type, data.Value);
@@ -155,7 +155,7 @@ public class DataGenerator {
 		return false;
 	}
 	
-	public ArrayList<DataSetModel> returnData(String domain,String str[])
+	public ArrayList<DataSet> returnData(String domain,String str[])
 	{
 		api = new APIFunctions(Domain.NAUKRI_GULF);
 		gson = new Gson();
@@ -175,12 +175,12 @@ public class DataGenerator {
 			System.out.println("UNABLE TO HIT TEST DATA API");
 			e.printStackTrace();
 		}
-		ArrayList<DataSetModel> data=new ArrayList<>();
+		ArrayList<DataSet> data=new ArrayList<>();
 		if(res!=null)
 		{
-		for(DataSet dd:res.getDataSet())
+		for(DataSet2 dd:res.getDataSet())
 		{
-			DataSetModel tempData=new DataSetModel(dd.getType(), dd.getValid(), dd.getValue());
+			DataSet tempData=new DataSet(dd.getType(), dd.getValid(), dd.getValue());
 			data.add(tempData);
 		}
 				}

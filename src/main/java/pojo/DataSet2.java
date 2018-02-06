@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Generated("org.jsonschema2pojo")
-public class DataSet implements Serializable
+public class DataSet2 implements Serializable
 {
 
     @SerializedName("id")
@@ -35,7 +35,7 @@ public class DataSet implements Serializable
      * No args constructor for use in serialization
      * 
      */
-    public DataSet() {
+    public DataSet2() {
     }
 
     /**
@@ -46,7 +46,7 @@ public class DataSet implements Serializable
      * @param type
      * @param value
      */
-    public DataSet(Integer id, String value, String type, Boolean valid, String domain) {
+    public DataSet2(Integer id, String value, String type, Boolean valid, String domain) {
         this.id = id;
         this.value = value;
         this.type = type;
@@ -226,8 +226,8 @@ public class DataSet implements Serializable
         "unchecked"
     })
     public<T >T get(String name) {
-        Object value = declaredPropertyOrNotFound(name, DataSet.NOT_FOUND_VALUE);
-        if (DataSet.NOT_FOUND_VALUE!= value) {
+        Object value = declaredPropertyOrNotFound(name, DataSet2.NOT_FOUND_VALUE);
+        if (DataSet2.NOT_FOUND_VALUE!= value) {
             return ((T) value);
         } else {
             throw new IllegalArgumentException((("property \""+ name)+"\" is not defined"));
@@ -250,10 +250,10 @@ public class DataSet implements Serializable
         if (other == this) {
             return true;
         }
-        if ((other instanceof DataSet) == false) {
+        if ((other instanceof DataSet2) == false) {
             return false;
         }
-        DataSet rhs = ((DataSet) other);
+        DataSet2 rhs = ((DataSet2) other);
         return new EqualsBuilder().append(id, rhs.id).append(value, rhs.value).append(type, rhs.type).append(valid, rhs.valid).append(domain, rhs.domain).isEquals();
     }
 

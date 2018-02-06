@@ -17,7 +17,7 @@ public class MainResponse implements Serializable
 
     @SerializedName("dataSet")
     @Expose
-    private List<DataSet> dataSet = new ArrayList<DataSet>();
+    private List<DataSet2> dataSet = new ArrayList<DataSet2>();
     protected final static Object NOT_FOUND_VALUE = new Object();
     private final static long serialVersionUID = 4469360734060061405L;
 
@@ -32,7 +32,7 @@ public class MainResponse implements Serializable
      * 
      * @param dataSet
      */
-    public MainResponse(List<DataSet> dataSet) {
+    public MainResponse(List<DataSet2> dataSet) {
         this.dataSet = dataSet;
     }
 
@@ -41,7 +41,7 @@ public class MainResponse implements Serializable
      * @return
      *     The dataSet
      */
-    public List<DataSet> getDataSet() {
+    public List<DataSet2> getDataSet() {
         return dataSet;
     }
 
@@ -50,7 +50,7 @@ public class MainResponse implements Serializable
      * @param dataSet
      *     The dataSet
      */
-    public void setDataSet(List<DataSet> dataSet) {
+    public void setDataSet(List<DataSet2> dataSet) {
         this.dataSet = dataSet;
     }
 
@@ -62,7 +62,7 @@ public class MainResponse implements Serializable
     protected boolean declaredProperty(String name, Object value) {
         if ("dataSet".equals(name)) {
             if (value instanceof List) {
-                setDataSet(((List<DataSet> ) value));
+                setDataSet(((List<DataSet2> ) value));
             } else {
                 throw new IllegalArgumentException(("property \"dataSet\" is of type \"java.util.List<com.example.pojo.DataSet>\", but got "+ value.getClass().toString()));
             }

@@ -1,12 +1,12 @@
 package com.example.demo;
 
-public class DataSetModel {
+public class DataSet {
 	
 	String Type;
 	boolean Valid;
 	String Value;
 	
-	public DataSetModel(String Type,boolean Valid,String Value)
+	public DataSet(String Type,boolean Valid,String Value)
 	{
 		this.Type=Type;
 		this.Valid=Valid;
