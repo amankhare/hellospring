@@ -5,7 +5,7 @@
     <classes>
       <class name="com.example.demo.testfile">
         <methods>
-          <include name="TC1" invocation-numbers="0"/>
+          <include name="TC1"/>
         </methods>
       </class> <!-- com.example.demo.testfile -->
     </classes>

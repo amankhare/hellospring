@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import apiTestingLibrary.APIFunctions;
 import apiTestingLibrary.APIHeaders;
 import apiTestingLibrary.Domain;
-import apiTestingLibrary.Response;
 
 public class testfile {
 	
@@ -74,13 +73,13 @@ public class testfile {
 	*/@DataProvider(name="data2")
 	public Object[][] DataProvider_Reg() throws Exception
 	{
-		ArrayList<HashMap<String,String>> getdata=dataGenerator.getValidationData("ng","Name","Pass","Email");
+		ArrayList<HashMap<String,String>> getdata=dataGenerator.getValidationData(Params.NG_Domain,Params.Name,Params.Email,Params.Password);
 		Object row[][] = new Object[getdata.size()][2];
 		for (int i = 0; i < getdata.size(); i++) {
 			row[i][0] = i+1;
 			row[i][1] = getdata.get(i);;
 		}
-		
+		System.out.println("------------------------------------------------");
 		return row;
 	}
 	
@@ -103,8 +102,8 @@ public class testfile {
 		driver.findElement(By.xpath(expLevelFresher_WE)).click();
 		driver.findElement(By.xpath(continueToRegister_Btn)).click();
 		List<WebElement> error=driver.findElements(By.xpath("//span[contains(@id,'_err')]"));
-		Assert.assertTrue(dataGenerator.AssertValidator(data.get("Invalid"),data.get("Expected"),error));
-		driver.close();
+		//Assert.assertTrue(dataGenerator.AssertValidator(data.get("Invalid"),data.get("Expected"),error));
+		///driver.close();
 	}
 
 	/*

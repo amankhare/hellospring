@@ -70,6 +70,12 @@ public class DataGenerator {
 	            return p1.Type.compareTo(p2.Type); // if you want to short by name
 	        }
 	    });
+		if(str.length==1)
+		{
+			if(!positivedata.isEmpty())
+				negativedata.add(positivedata.get(0));
+			return convertToHashMap(negativedata,str.length);
+		}
 		positivedatafromHash.addAll(pdata.values());
 		for(DataSetModel aa:negativedata)
 		{
