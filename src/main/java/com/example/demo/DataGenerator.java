@@ -86,7 +86,7 @@ public class DataGenerator {
 		for(DataSetModel aa:ndata.values())
 			finaldata.add(aa);
 		
-		return convertToHashMap(finaldata,3);
+		return convertToHashMap(finaldata,str.length);
 	}
 	
 	public ArrayList<HashMap<String,String>> convertToHashMap(ArrayList<DataSetModel> list,int count)
