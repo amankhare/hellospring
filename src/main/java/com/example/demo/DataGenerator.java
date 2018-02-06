@@ -40,9 +40,9 @@ public class DataGenerator {
 		}
 	}*/
 	
-	public ArrayList<HashMap<String,String>> getValidationData(String Domain,String... str)
+	public ArrayList<HashMap<String,String>> getValidationData(ArrayList<DataSet> data2)
 	{
-		ArrayList<DataSet> data=returnData(Domain,str);//has data in row format
+		ArrayList<DataSet> data=data2;//has data in row format
 		ArrayList<DataSet> finaldata=new ArrayList<>();//has data in row format
 		ArrayList<DataSet> positivedata=new ArrayList<>();
 		ArrayList<DataSet> positivedatafromHash=new ArrayList<>();
@@ -154,7 +154,7 @@ public class DataGenerator {
 		}
 		return false;
 	}
-	
+	/*
 	public ArrayList<DataSet> returnData(String domain,String str[])
 	{
 		api = new APIFunctions(Domain.NAUKRI_GULF);
@@ -184,30 +184,30 @@ public class DataGenerator {
 			data.add(tempData);
 		}
 				}
-		return data;
-		//MainResponse resp=gson.fromJson(response.getResponse(), MainResponse.class);
-		//resp.getType();
-	/*	
+	}
+*/
+	public static void main(String args[])
+	{
 		ArrayList<DataSet> data=new ArrayList<>();
 		DataSet data0=new DataSet("Name",false,"!false  name^&*(");
 		DataSet data1=new DataSet("Name",true,"Aman");
 		DataSet data2=new DataSet("Name",false,"*(&^%$#@");
-		DataSet data3=new DataSet("Pass",true,"Aman");
+		/*DataSet data3=new DataSet("Pass",true,"Aman");
 		DataSet data4=new DataSet("Pass",false,"(*&^%$#");
 		DataSet data5=new DataSet("Pass",true,"naukri");
 		DataSet data6=new DataSet("Email",true,"shaz@yopmail.com");
 		DataSet data7=new DataSet("Email",false,"shaz@@yopmail.com");
-		DataSet data8=new DataSet("Email",false,"!@#@@yopmail.com");
+		DataSet data8=new DataSet("Email",false,"!@#@@yopmail.com");*/
 		data.add(data0);
 		data.add(data1);
 		data.add(data2);
-		data.add(data3);
+		/*data.add(data3);
 		data.add(data4);
 		data.add(data5);
 		data.add(data6);
 		data.add(data7);
-		data.add(data8);
-		return data;
-*/	}
+		data.add(data8);*/
+		new DataGenerator().getValidationData(data);
+	}
  
 }
