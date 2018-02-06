@@ -1,0 +1,16 @@
+{
+    "name": "Aman",
+    "password": "Experience",
+    "caseType": true,
+    "emailId": "kiosk-aman@yopmail.com",
+    "domain": "NG",
+    "experienceLevel": "Fresher",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/data/5a3767032221b732e85c7772"
+        },
+        "dataSet": {
+            "href": "http://localhost:8080/data/5a3767032221b732e85c7772"
+        }
+    }
+}

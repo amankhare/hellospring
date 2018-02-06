@@ -1,0 +1,8 @@
+---
+applications:
+- name: hellospring
+  memory: 256M
+  instances: 1
+  host: rest-service
+  domain: guides.spring.io
+  path: hellospring.jar

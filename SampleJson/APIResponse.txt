@@ -1,0 +1,39 @@
+{
+    "dataSet": [
+        {
+            "id": 0,
+            "value": "aman",
+            "type": "Name",
+            "valid": true,
+            "domain": "ng"
+        },
+        {
+            "id": 0,
+            "value": "'!!!!!!!!'",
+            "type": "Name",
+            "valid": false,
+            "domain": "ng"
+        },
+        {
+            "id": 0,
+            "value": "'@@@123!!!!'",
+            "type": "Name",
+            "valid": false,
+            "domain": "ng"
+        },
+        {
+            "id": 0,
+            "value": "naukri",
+            "type": "Pass",
+            "valid": true,
+            "domain": "ng"
+        },
+        {
+            "id": 0,
+            "value": "'_____asd__@@'",
+            "type": "Pass",
+            "valid": false,
+            "domain": "ng"
+        }
+    ]
+}
