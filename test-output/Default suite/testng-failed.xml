@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.example.demo.testfile">
+      <class name="com.example.demo.updateData">
         <methods>
-          <include name="TC1"/>
+          <include name="TC_CVUploadAPITest_001_VerifyUpload"/>
         </methods>
-      </class> <!-- com.example.demo.testfile -->
+      </class> <!-- com.example.demo.updateData -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

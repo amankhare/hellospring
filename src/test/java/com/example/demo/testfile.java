@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,7 @@ public class testfile {
 	Gson gson;
 	APIFunctions api;
 	APIHeaders headers;
+	WebDriver driver;
 	private String name_Txt = "//input[@id='regUserName']";
 	private String email_Txt = "//input[@id='regEmail']";
 	private String password_Txt = "//input[@id='regPassword']";
@@ -35,7 +37,7 @@ public class testfile {
 	String Common_Resources_Path = System.getenv("Common_Resources");
 	DataGenerator dataGenerator=new DataGenerator();
 	
-	
+/*	
 	@Test
 	public void generatePOJO() {
 		APIFunctions api = new APIFunctions(Domain.NAUKRI_GULF);
@@ -46,7 +48,7 @@ public class testfile {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	/*@DataProvider(name="data")
 	public Object[][] DataProvider_CvUpload() throws Exception
@@ -70,7 +72,8 @@ public class testfile {
 			//MainResponse resp=gson.fromJson(response.getResponse(), MainResponse.class);
 			//List<Datum> data=resp.getEmbedded().getData();
 	
-	*/@DataProvider(name="data2")
+	*/
+	@DataProvider(name="data2")
 	public Object[][] DataProvider_Reg() throws Exception
 	{
 		ArrayList<HashMap<String,String>> getdata=dataGenerator.getValidationData(Params.NG_Domain,Params.Name,Params.Email,Params.Password);
@@ -82,15 +85,15 @@ public class testfile {
 		System.out.println("------------------------------------------------");
 		return row;
 	}
-	
+	//875
 	@Test(dataProvider="data2")
 	public void TC1(int row,HashMap<String,String> data) throws InterruptedException
 	{
-		if(row!=1)
-			return;
+		
+		String filename="ResmanP0.properties";		
 		System.out.println(data.toString());
 		FirefoxProfile profile = new FirefoxProfile();
-		WebDriver driver = new FirefoxDriver(new FirefoxBinary(new File(Common_Resources_Path+"\\MozillaVersions\\Mozilla Firefox30\\firefox.exe")), profile);
+		driver = new FirefoxDriver(new FirefoxBinary(new File(Common_Resources_Path+"\\MozillaVersions\\Mozilla Firefox30\\firefox.exe")), profile);
 		driver.get("https://www.naukrigulf.com/register");
 		driver.manage().window().maximize();
 		
@@ -102,8 +105,21 @@ public class testfile {
 		driver.findElement(By.xpath(expLevelFresher_WE)).click();
 		driver.findElement(By.xpath(continueToRegister_Btn)).click();
 		List<WebElement> error=driver.findElements(By.xpath("//span[contains(@id,'_err')]"));
-		//Assert.assertTrue(dataGenerator.AssertValidator(data.get("Invalid"),data.get("Expected"),error));
-		///driver.close();
+		Assert.assertTrue(dataGenerator.AssertValidator(data.get("Invalid"),data.get("Expected"),error,filename));
+		
+	}
+	
+	@Test
+	public void TC()
+	{
+		System.out.println(dataGenerator.getData(Params.NG_Domain,Params.Name,Params.Email,Params.Password).toString());
+	}
+	
+	
+	//@AfterMethod
+	public void af()
+	{
+		driver.quit();
 	}
 
 	/*

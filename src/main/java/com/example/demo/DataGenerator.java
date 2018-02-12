@@ -4,9 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,16 +31,21 @@ public class DataGenerator {
 	static APIFunctions api;
 	static APIHeaders headers;
 	
-	/*public ArrayList<HashMap<String,String>> getPositiveData()
+	public HashMap<String,String> getData(String Domain,String... str)
 	{
-		ArrayList<DataSet> data=dataGenerator.returnData();//has data in row format
-		ArrayList<DataSet> positivedata=new ArrayList<>();
-		for(DataSet row:data)
+		ArrayList<DataSetModel> data=returnData(Domain,str);//has data in row format
+		//ArrayList<DataSetModel> positivedata=new ArrayList<>();
+		HashMap<String,String> pdata=new HashMap<>();
+		for(DataSetModel row:data)
 		{
 			if(row.Valid)
-				positivedata.add(row);
+			{
+				pdata.put(row.Type, row.Value);
+			}
 		}
-	}*/
+		
+		return pdata;
+	}
 	
 	public ArrayList<HashMap<String,String>> getValidationData(String Domain,String... str)
 	{
@@ -134,18 +141,15 @@ public class DataGenerator {
 		return output;
 	}
 	
-	public boolean AssertValidator(String field,String Expected,List<WebElement> errors)
+	public boolean AssertValidator(String field,String Expected,List<WebElement> errors,String filename)
 	{
 		Properties prop = new Properties();
 		InputStream input=null;
-		if(Expected.equalsIgnoreCase("Submitted"))
-		{
-			return errors.size()==0;
-		}
 		try
 		{
-		input = input = new FileInputStream("TestDataForMessages.properties");
+		input = input = new FileInputStream(filename);
 		prop.load(input);
+		prop.values();
 		System.out.println(prop.getProperty(field));
 		ArrayList<String> errorText=new ArrayList<>();
 		for(WebElement web:errors)
@@ -154,7 +158,29 @@ public class DataGenerator {
 			if(!text.equals(""))
 				errorText.add(text);
 		}
-		return errorText.contains(prop.get(field));
+		if(Expected.equalsIgnoreCase("Submitted"))
+		{
+			return errorText.size()==0;
+		}
+		if(field.equals("All"))
+		{
+			for(String a:errorText)
+			{
+				if(!prop.containsValue(a))
+					return false;
+			}
+			return true;
+		}
+		HashSet<String> hs=new HashSet<>();
+		for(String a:prop.get(field).toString().split(","))
+		{
+			hs.add(a);
+		}
+		for(String a:hs)
+		{
+			if(errorText.contains(a))
+				return true;
+		}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
